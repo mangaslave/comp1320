@@ -1,7 +1,4 @@
 function makeCalendar() {
-    function datePrint() {
-
-    }
     const monthsValue = {
         "January": 1,
         "February": 2,
@@ -16,6 +13,7 @@ function makeCalendar() {
         "November": 11,
         "December": 12
     };
+
     for (let [key, value] of Object.entries(monthsValue)) {
         if ( value == 2) {
             for (let day = 1; day <= 28; day++) {
@@ -50,7 +48,7 @@ function isLeapYear(year) {
 function getDayOfTheWeek(year, month, day) {
     const monthsCode = [ 1, 4, 4, 0, 2, 5, 0, 3, 6, 1, 4, 6];
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const daysOfWeek = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
     const index = months.indexOf(month); 
 
     var step5 = monthsCode[index];
@@ -71,7 +69,7 @@ function getDayOfTheWeek(year, month, day) {
     } else if (year >= 2100 && year < 2200) {
         special = 4;
     } else {
-        return special;
+        special = 0;
     }
 
     const twoDigit = (year % 100);
@@ -79,7 +77,7 @@ function getDayOfTheWeek(year, month, day) {
     const step2 = twoDigit - (step1 * 12);
     const step3 = Math.floor(step2 / 4);
     const step4 = day;
-    const weekday = (step1 + step2 + step3 + step4 + step5 + special - 1) % 7;
+    const weekday = (step1 + step2 + step3 + step4 + step5 + special) % 7;
 
     return daysOfWeek[weekday];
 }
